@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: container-db
-        image: 211.183.3.10:5000/mydb:1.0
+        image: 211.183.3.10:5000/mydb:11
         ports:
         - containerPort: 3306
 ---
