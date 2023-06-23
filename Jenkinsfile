@@ -16,6 +16,8 @@ pipeline {
     DOCKERHUB = '211.183.3.10:5000/mywp'
     DOCKERHUB1 = '211.183.3.10:5000/mydb'
     DOCKERHUBCREDENTIAL = 'docker_cre'
+    WPDOCKERFILE = 'wp-Dockerfile'
+    DBDOCKERFILE = 'db-Dockerfile'
     // docker credential 생성시의 ID
   }
 
@@ -37,9 +39,9 @@ pipeline {
     }
     stage('Docker image Build') {
       steps {
-        sh "docker build -t ${DOCKERHUB}:${currentBuild.number} -f wp-Dockerfile ."
+        sh "docker build -t ${DOCKERHUB}:${currentBuild.number} -f ${WPDOCKERFILE} ."
         sh "docker build -t ${DOCKERHUB}:latest ."
-        sh "docker build -t ${DOCKERHUB1}:${currentBuild.number} -f db-Dockerfile ."
+        sh "docker build -t ${DOCKERHUB1}:${currentBuild.number} -f ${DBDOCKERFILE} ."
         sh "docker build -t ${DOCKERHUB1}:latest ." 
         // oolralra/sbimage:4 이런식으로 빌드가 될것이다.
         // currentBuild.number 젠킨스에서 제공하는 빌드넘버변수.
