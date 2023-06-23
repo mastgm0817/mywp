@@ -40,9 +40,9 @@ pipeline {
     stage('Docker image Build') {
       steps {
         sh "docker build -t ${DOCKERHUB}:${currentBuild.number} -f ${WPDOCKERFILE} ."
-        sh "docker build -t ${DOCKERHUB}:latest ."
+        sh "docker build -t ${DOCKERHUB}:latest -f ${WPDOCKERFILE}."
         sh "docker build -t ${DOCKERHUB1}:${currentBuild.number} -f ${DBDOCKERFILE} ."
-        sh "docker build -t ${DOCKERHUB1}:latest ." 
+        sh "docker build -t ${DOCKERHUB1}:latest -f ${DBDOCKERFILE}." 
         // oolralra/sbimage:4 이런식으로 빌드가 될것이다.
         // currentBuild.number 젠킨스에서 제공하는 빌드넘버변수.
       }
